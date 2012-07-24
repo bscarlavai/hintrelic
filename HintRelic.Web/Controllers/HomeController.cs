@@ -5,11 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using Facebook;
 using System.Diagnostics;
+using HintRelic.Data;
 
 namespace HintRelic.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private static hintrelicEntities _dataContext = new hintrelicEntities();
         public ActionResult Index()
         {
             ViewBag.Message = "Modify this template to kick-start your ASP.NET MVC application.";
@@ -37,6 +39,10 @@ namespace HintRelic.Web.Controllers
 
                     //ViewBag.FriendData = friendData;
                 }
+
+                Log l = new Log() { log_id = Guid.NewGuid().ToString(), log_category = "Test", log_date = DateTime.UtcNow, log_description = "Test", stack_trace = "" };
+                _dataContext.Logs.AddObject(l);
+                _dataContext.SaveChanges();
 
                 Debug.Write("Home.Index() completed. Access token = " + accessToken);
             }
