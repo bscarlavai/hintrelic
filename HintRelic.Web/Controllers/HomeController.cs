@@ -48,6 +48,7 @@ namespace HintRelic.Web.Controllers
             }
             catch (Exception ex) 
             {
+                ViewBag.ExceptionString = ex.ToString();
                 throw ex;
             }
 
