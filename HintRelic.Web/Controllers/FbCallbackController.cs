@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SMSBirthdayReminder.Controllers
+namespace HintRelic.Web.Controllers
 {
     public class FbCallbackController : Controller
     {

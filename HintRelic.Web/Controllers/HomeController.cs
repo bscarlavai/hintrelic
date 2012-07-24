@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using Facebook;
 using System.Diagnostics;
 
-namespace SmsBirthdayReminder.Controllers
+namespace HintRelic.Web.Controllers
 {
     public class HomeController : Controller
     {

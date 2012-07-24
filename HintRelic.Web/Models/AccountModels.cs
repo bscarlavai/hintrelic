@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Security;
 
-namespace SMSBirthdayReminder.Models
+namespace HintRelic.Web.Models
 {
 
     public class ChangePasswordModel

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace SMSBirthdayReminder
+namespace HintRelic.Web
 {
     public class BundleConfig
     {

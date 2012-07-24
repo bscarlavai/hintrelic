@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace SMSBirthdayReminder
+namespace HintRelic.Web
 {
     public class FilterConfig
     {

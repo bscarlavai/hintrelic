@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using SMSBirthdayReminder.Models;
+using HintRelic.Web.Models;
 
-namespace SmsBirthdayReminder.Controllers
+namespace HintRelic.Web.Controllers
 {
 
     [Authorize]
