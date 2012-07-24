@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/themes/base/css", "~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <div id="fb-root"></div>
+        <script>
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '467124419973328', // App ID
+                    status: true, // check login status
+                    cookie: true, // enable cookies to allow the server to access the session
+                    xfbml: true  // parse XFBML
+                });
+
+                // Additional initialization code here
+                function updateButton(response) {
+                    if (response.authResponse) {
+                        var accessToken = response.authResponse.accessToken;
+
+                        $.post('/fbcallback',
+                            { accesstoken: accessToken }
+                        );
+
+                        $('#fb-logout').show();
+
+                    } else {
+                        $('#fb-logout').hide();
+                    }
+                }
+
+                FB.getLoginStatus(updateButton);
+                FB.Event.subscribe('auth.statusChange', updateButton);
+            };
+
+            // Load the SDK Asynchronously
+            (function (d) {
+                var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+                if (d.getElementById(id)) { return; }
+                js = d.createElement('script'); js.id = id; js.async = true;
+                js.src = "//connect.facebook.net/en_US/all.js";
+                ref.parentNode.insertBefore(js, ref);
+            } (document));
+        </script>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("Your logo here", "Index", "Home")</p>
+                </div>
+                <div class="float-right">
+                    <div class="fb-login-button" scope="friends_birthday,user_birthday,publish_stream,offline_access" data-show-faces="true" data-width="400" data-max-rows="1"></div>
+                    <a id="fb-logout" href="javascript:FB.logout();" style="display:none;">logout</a>
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                </div>
+                <div class="float-right">
+                    <ul id="social">
+                        <li><a href="http://facebook.com" class="facebook">Facebook</a></li>
+                        <li><a href="http://twitter.com" class="twitter">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

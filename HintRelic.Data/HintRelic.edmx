@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="hintrelicModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="hintrelicModelStoreContainer">
+          <EntitySet Name="logs" EntityType="hintrelicModel.Store.logs" store:Type="Tables" Schema="hintrelic" />
+        </EntityContainer>
+        <EntityType Name="logs">
+          <Key>
+            <PropertyRef Name="log_id" />
+          </Key>
+          <Property Name="log_id" Type="varchar" Nullable="false" MaxLength="36" />
+          <Property Name="log_date" Type="datetime" Nullable="false" />
+          <Property Name="log_category" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="log_description" Type="text" Nullable="false" />
+          <Property Name="stack_trace" Type="text" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="hintrelicModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="hintrelicEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Logs" EntityType="hintrelicModel.Log" />
+        </EntityContainer>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="log_id" />
+          </Key>
+          <Property Name="log_id" Type="String" Nullable="false" />
+          <Property Name="log_date" Type="DateTime" Nullable="false" />
+          <Property Name="log_category" Type="String" Nullable="false" />
+          <Property Name="log_description" Type="String" Nullable="false" />
+          <Property Name="stack_trace" Type="String" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="hintrelicModelStoreContainer" CdmEntityContainer="hintrelicEntities">
+          <EntitySetMapping Name="Logs"><EntityTypeMapping TypeName="hintrelicModel.Log"><MappingFragment StoreEntitySet="logs">
+            <ScalarProperty Name="log_id" ColumnName="log_id" />
+            <ScalarProperty Name="log_date" ColumnName="log_date" />
+            <ScalarProperty Name="log_category" ColumnName="log_category" />
+            <ScalarProperty Name="log_description" ColumnName="log_description" />
+            <ScalarProperty Name="stack_trace" ColumnName="stack_trace" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="HintRelic">
+        <EntityTypeShape EntityType="hintrelicModel.Log" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9802864583333331" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
